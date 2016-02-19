@@ -1,0 +1,38 @@
+body
+{
+	background-color: #F8F8F8;
+	padding-top: 25px;
+}
+
+textarea
+{
+	resize: none;
+}
+
+.boitePrincipale
+{
+	background-color: white;
+	border-radius: 5px;
+	box-shadow: 0 0 5px #dddddd;
+}
+
+.progressBarContainer
+{
+	margin-bottom: 0px;
+}
+
+.progressBar
+{
+	width: 0%;
+}
+
+.titleButtonText
+{
+	padding-left:5%;
+	padding-right: 5%;
+}
+
+.middleAlign
+{
+	vertical-align:middle;
+}
