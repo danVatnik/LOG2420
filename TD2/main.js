@@ -1,13 +1,18 @@
 $(function()
 {
+	var estActive = false;
     var compteurDeJetons;
     var startWorking = function()
     {
-        //On met à jour les événements pour cliquer sur les boutons.
-        $("#commencer").off("click");
+		arreterVerificationAffichage();
+		
+        //On met à jour le bouton start
+		$("#commencer").off("click");
+		$("#commencer").addClass("disabled");
+		
+		//On met à jour le bouton stop
+		$("#arreter").removeClass("disabled");
         $("#arreter").click(stopWorking);
-        
-        //Changer le visuel des boutons
         
         //On part la tâche
         compteurDeJetons = new Worker("worker.js");
@@ -17,16 +22,14 @@ $(function()
             //On met à jour le nombre de jetons et la progressBar
             $("#result").val(e.data[1]);
             $("#myProgress").css("width", e.data[0] + "%");
+			
             //On vérifie si le travail est terminé
             if(e.data[0] == 100)
             {
                 //Le travail est terminé, on écrit terminé et on change les événements des boutons.
                 compteurDeJetons.terminate();
-                $("#commencer").click(startWorking);
                 $("#arreter").off("click");
-                
-                //Changer le visuel des boutons
-                
+                commencerVerificationAffichage();
             }
         }
     }
@@ -36,13 +39,50 @@ $(function()
         //On arrête le travail et on change les événements des boutons.
         compteurDeJetons.terminate();
         $("#result").val("Annulé");
-        $("#commencer").click(startWorking);
         $("#arreter").off("click");
-        
-        //Changer le visuel des boutons
-        
+		commencerVerificationAffichage();
     }
 
-    //On active notre bouton pour lancer le travail.
-    $("#commencer").click(startWorking);
+    var commencerVerificationAffichage = function()
+	{
+		estActive = false;
+		$("#commencer").addClass("disabled");
+		$("#arreter").addClass("disabled");
+		
+		checkForText();
+		$("#inputText").keyup(checkForText);
+		$("#inputText").on("paste", waitBeforeCheck);
+		$("#inputText").on("cut", waitBeforeCheck);
+	}
+	
+	var arreterVerificationAffichage = function()
+	{
+		$("#inputText").off("keyup");
+		$("#inputText").off("paste");
+		$("#inputText").off("cut");
+	}
+    
+    var waitBeforeCheck = function()
+	{
+		setTimeout(checkForText, 100);
+	}
+    
+    var checkForText = function()
+	{
+		if($("#inputText").val() != "" && !estActive)
+		{
+			estActive = true;
+			$("#commencer").removeClass("disabled");
+			$("#commencer").click(startWorking);
+		}
+		else if($("#inputText").val() == "" && estActive)
+		{
+			estActive = false;
+			$("#commencer").addClass("disabled");
+			$("#commencer").off("click");
+		}
+	}
+    
+    //On vérifie s'il y a du texte dans la boîte de texte.
+    commencerVerificationAffichage();
 });
