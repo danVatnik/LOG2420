@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="main.js"></script>
 </head>
 <title> Something good</title>
-<body>
+<body style = "background-color: #F8F8F8; padding-top: 25px">
+<!--<body style = "background-color: #333; padding-top: 25px"> -->
 
-<div class="container content">
+<div class="container content" style = "background-color: white; border-radius: 5px; box-shadow: 0 0 5px #dddddd;">
 <h1>Compteur de jetons</h1>
     <div class="row">
         <div class = "col-md-7">
@@ -28,15 +30,22 @@
                 </div>
             </div>
             <div class = "row">
-                <div class = "col-md-9">
-                <h1>
-                    <button id = "commencer" class = "btn btn-primary btn-lg btn-block" onclick="startWorking()">Start</button> 
-                    <button id = "arreter" class = "btn btn-danger btn-lg btn-block disabled" onclick="stopWorking()">Stop</button>
+                <h1 style = "padding-left:5%; padding-right: 5%">
+                    <button id = "commencer" class = "btn btn-primary btn-lg btn-block disabled">Start</button> 
+                    <button id = "arreter" class = "btn btn-danger btn-lg btn-block disabled" >Stop</button>
                 </h1>
-                </div>
-                <div class = "col-md-3">
+               <!-- <div class = "col-md-9">
+                    <h1>
+                        <button id = "commencer" class = "btn btn-primary btn-lg btn-block" onclick="startWorking()">Start</button> 
+                        <button id = "arreter" class = "btn btn-danger btn-lg btn-block disabled" onclick="stopWorking()">Stop</button>
+                    </h1>
+                    </div>
+                    <div class = "col-md-3">
+                    <div class = "h1 text-center"><output class = "h1" id="result">0</output><small>Jetons<small></div>
+                </div> -->
+            </div>
+            <div class = "row" style="vertical-align:middle">
                 <div class = "h1 text-center"><output class = "h1" id="result">0</output><small>Jetons<small></div>
-                </div>
             </div>
         </div>
     </div>
