@@ -22,6 +22,16 @@ $(function()
             //On met à jour le nombre de jetons et la progressBar
             $("#result").val(e.data[1]);
             $("#myProgress").css("width", e.data[0] + "%");
+
+			//On affiche seulement lorsque le pourcentage est plus grand que 10.
+            if(e.data[0] >= 10)
+			{
+                $("#myProgress").html(e.data[0] + "%");
+			}
+			else
+			{
+				$("#myProgress").html("");
+			}
 			
             //On vérifie si le travail est terminé
             if(e.data[0] == 100)
